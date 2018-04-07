@@ -177,13 +177,13 @@ func (c *Client) tokenToken() string {
 }
 
 func (c *Client) doAuthAndHTTPReq(req *http.Request) ([]byte, http.Header, error) {
-	req.Header.Set("Authorization", c.bearerToken())
+	req.Header.Set("Authorization", c.tokenToken())
 	return c.doHTTPReq(req)
 }
 
 func (c *Client) doReq(req *http.Request) ([]byte, http.Header, error) {
 	if c.hasServerToken() {
-		req.Header.Set("Authorization", c.bearerToken())
+		req.Header.Set("Authorization", c.tokenToken())
 	}
 	return c.doHTTPReq(req)
 }
